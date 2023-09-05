@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: local
+  h2.console:
+      enabled: true
+      path: '/console'
+
+  main:
+    banner-mode: off
+
+task:
+  template:
+    allowMultipleTasks: false
+
+management:
+  endpoints:
+    web:
+      base-path: '/status'
