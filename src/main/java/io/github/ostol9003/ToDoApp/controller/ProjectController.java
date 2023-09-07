@@ -4,7 +4,10 @@ import io.github.ostol9003.ToDoApp.logic.ProjectService;
 import io.github.ostol9003.ToDoApp.model.Project;
 import io.github.ostol9003.ToDoApp.model.ProjectStep;
 import io.github.ostol9003.ToDoApp.model.projection.ProjectWriteModel;
+import io.micrometer.core.annotation.Timed;
 import jakarta.validation.Valid;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +53,7 @@ public class ProjectController {
         model.addAttribute("message", "Project added!");
         return "projects";
     }
-
+    @Timed(value = "project.create.group", histogram = true, percentiles = {0.5,0.95,0.99})
     @PostMapping("/{id}")
     String createGroup(
             @ModelAttribute("project") ProjectWriteModel current,
@@ -72,4 +75,5 @@ public class ProjectController {
     List<Project> getProjects() {
         return service.readAll();
     }
+
 }

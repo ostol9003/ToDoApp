@@ -23,4 +23,5 @@ public class LogicConfiguration {
         return new TaskGroupService(repository, taskRepository);
     }
 
+
 }
