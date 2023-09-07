@@ -27,14 +27,15 @@ public class Task {
     @Column(name = "dead_line")
     private LocalDateTime deadline;
 
+
+    /* nadpisanie nazw kolumn
+    @AttributeOverrides(
+             {
+                     @AttributeOverride(column = @Column(name="updatedOn"), name = "updatedOn")
+                     @AttributeOverride(column = @Column(name="createdOn1"), name = "createdOn")
+             }
+     )*/
     @Embedded
-   /* nadpisanie nazw kolumn
-   @AttributeOverrides(
-            {
-                    @AttributeOverride(column = @Column(name="updatedOn"), name = "updatedOn")
-                    @AttributeOverride(column = @Column(name="createdOn1"), name = "createdOn")
-            }
-    )*/
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Audit audit = new Audit();
