@@ -1,6 +1,7 @@
 package io.github.ostol9003.ToDoApp.model;
 
 
+import io.github.ostol9003.ToDoApp.model.event.TaskEvent;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -64,6 +65,10 @@ public class Task {
         done = source.done;
         deadline = source.deadline;
         group = source.group;
+    }
+    public TaskEvent toggle(){
+        this.done = !this.done;
+        return TaskEvent.changed(this);
     }
 
 

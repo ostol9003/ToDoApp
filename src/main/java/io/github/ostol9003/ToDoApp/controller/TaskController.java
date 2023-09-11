@@ -6,6 +6,7 @@ import io.github.ostol9003.ToDoApp.model.TaskRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,10 +20,12 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping("/tasks")
 public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
+    private final ApplicationEventPublisher publisher;
     private final TaskRepository repository;
     private final TaskService taskService;
 
-    TaskController(TaskRepository taskRepository, TaskService taskService) {
+    TaskController(ApplicationEventPublisher publisher, TaskRepository taskRepository, TaskService taskService) {
+        this.publisher = publisher;
         this.repository = taskRepository;
         this.taskService = taskService;
     }
@@ -81,7 +84,8 @@ public class TaskController {
             return ResponseEntity.notFound().build();
         }
         repository.findById(id)
-                .ifPresent(task -> task.setDone(!task.isDone()));
+                .map(Task::toggle)
+                .ifPresent(publisher::publishEvent);
         return ResponseEntity.noContent().build();
     }
 
