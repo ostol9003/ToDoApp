@@ -24,7 +24,7 @@ public class Task {
     private String description;
 
     private boolean done;
-    @Column(name = "dead_line")
+    @Column(name = "deadline")
     private LocalDateTime deadline;
 
 

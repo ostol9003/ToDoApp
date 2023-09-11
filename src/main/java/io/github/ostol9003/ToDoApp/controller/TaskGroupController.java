@@ -6,7 +6,6 @@ import io.github.ostol9003.ToDoApp.model.TaskRepository;
 import io.github.ostol9003.ToDoApp.model.projection.GroupReadModel;
 import io.github.ostol9003.ToDoApp.model.projection.GroupTaskWriteModel;
 import io.github.ostol9003.ToDoApp.model.projection.GroupWriteModel;
-import io.github.ostol9003.ToDoApp.model.projection.ProjectWriteModel;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
