@@ -2,7 +2,7 @@
 
 App created during SpringBoot Udemy course. 
 
-*JAVA
+*JAVA /n
 *SpringBoot
 *Hibernate
 *Maven
